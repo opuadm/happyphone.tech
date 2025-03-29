@@ -23,8 +23,10 @@
             transform: translate(-50%, -50%);
             background-color: white;
             border: 2px solid #333;
+            border-radius: 10px;
             padding: 20px;
             z-index: 1000;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
         .popup.dark-mode {
             background-color: #333;
@@ -33,6 +35,19 @@
         }
         .popup button {
             margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .popup button:hover {
+            background-color: #0056b3;
+        }
+        .popup button:active {
+            background-color: #003f7f;
         }
         .overlay {
             display: none;
@@ -167,12 +182,19 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
         function makeHappy() {
             window.location.href = 'https://discord.com/app';
         }
 
         function makeNeutral() {
             document.querySelector('.image').style.filter = 'hue-rotate(60deg)';
+            closePopup();
+            setTimeout(showPopup, 10000); // Reappear after 10 seconds
         }
 
         function makeAngry() {
@@ -180,11 +202,15 @@
             document.querySelector('.image').style.filter = 'hue-rotate(180deg)';
             document.querySelector('.title').classList.add('shake');
             document.querySelector('a').classList.add('shake');
+            closePopup();
+            setTimeout(showPopup, 10000); // Reappear after 10 seconds
         }
 
         function makeSad() {
             document.body.style.backgroundColor = '#333';
             document.body.innerHTML = '';
+            closePopup();
+            setTimeout(showPopup, 10000); // Reappear after 10 seconds
         }
 
         window.onload = function() {
@@ -199,10 +225,7 @@
                 document.querySelector('.image').classList.add('scale', 'pulse');
                 document.querySelector('tetapux-ads').classList.add('shake', 'flip');
             }
-            setTimeout(function() {
-                document.getElementById('popup').style.display = 'block';
-                document.getElementById('overlay').style.display = 'block';
-            }, Math.random() * 1750 + 2000);
+            setTimeout(showPopup, Math.random() * 1750 + 2000); // Random delay between 2 and 3.75 seconds
         };
     </script>
 </body>
