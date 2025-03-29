@@ -199,7 +199,7 @@
 
         function makeAngry() {
             document.body.style.backgroundColor = '#8B0000'; // Dark red color
-            document.querySelector('.image').style.filter = 'hue-rotate(0deg) saturate(100) brightness(50)'; // Red color
+            document.querySelector('.image').style.filter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(3000%) hue-rotate(-10deg) brightness(90%) contrast(120%)'; // Red color
             document.querySelector('.title').classList.add('shake');
             document.querySelector('a').classList.add('shake');
             closePopup();
