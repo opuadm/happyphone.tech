@@ -15,9 +15,6 @@
         a.dark-mode {
             color: #bb86fc;
         }
-        img.dark-mode {
-            filter: invert(1);
-        }
         .bounce {
             animation: bounce 2s infinite;
         }
@@ -54,6 +51,28 @@
                 transform: scale(1.5);
             }
         }
+        .fade {
+            animation: fade 2s infinite;
+        }
+        @keyframes fade {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .slide {
+            animation: slide 2s infinite;
+        }
+        @keyframes slide {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/tiagorangel1/tetapux/aw.min.js"></script>
 </head>
@@ -73,12 +92,11 @@
                 document.querySelectorAll('a').forEach(function(element) {
                     element.classList.add('dark-mode');
                 });
-                document.querySelectorAll('img').forEach(function(element) {
-                    element.classList.add('dark-mode');
-                });
                 document.querySelector('.title').classList.add('bounce');
                 document.querySelector('a').classList.add('rotate');
                 document.querySelector('.image').classList.add('scale');
+                document.querySelector('.title').classList.add('fade');
+                document.querySelector('a').classList.add('slide');
             }
         };
     </script>
