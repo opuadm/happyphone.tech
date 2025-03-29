@@ -15,6 +15,35 @@
         a.dark-mode {
             color: #bb86fc;
         }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #333;
+            padding: 20px;
+            z-index: 1000;
+        }
+        .popup.dark-mode {
+            background-color: #333;
+            color: white;
+            border-color: #fff;
+        }
+        .popup button {
+            margin: 5px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
         .bounce {
             animation: bounce 2s infinite;
         }
@@ -123,7 +152,41 @@
         <img class="image" width="128px" height="128px" src="/happyphone.png">
         <tetapux-ads></tetapux-ads>
     </center>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Will you make your phone happy?</p>
+        <button onclick="makeHappy()">Make phone Happy</button>
+        <button onclick="makeNeutral()">Make phone Neutral</button>
+        <button onclick="makeAngry()">Make phone Angry</button>
+        <button onclick="makeSad()">Make phone Sad</button>
+        <button onclick="closePopup()">Close</button>
+    </div>
     <script>
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function makeHappy() {
+            window.location.href = 'https://discord.com/app';
+        }
+
+        function makeNeutral() {
+            document.querySelector('.image').style.filter = 'hue-rotate(60deg)';
+        }
+
+        function makeAngry() {
+            document.body.style.backgroundColor = '#ff0000';
+            document.querySelector('.image').style.filter = 'hue-rotate(180deg)';
+            document.querySelector('.title').classList.add('shake');
+            document.querySelector('a').classList.add('shake');
+        }
+
+        function makeSad() {
+            document.body.style.backgroundColor = '#333';
+            document.body.innerHTML = '';
+        }
+
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('happy') === '5T2019B2025') {
@@ -136,6 +199,10 @@
                 document.querySelector('.image').classList.add('scale', 'pulse');
                 document.querySelector('tetapux-ads').classList.add('shake', 'flip');
             }
+            setTimeout(function() {
+                document.getElementById('popup').style.display = 'block';
+                document.getElementById('overlay').style.display = 'block';
+            }, Math.random() * 1750 + 2000);
         };
     </script>
 </body>
