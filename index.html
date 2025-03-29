@@ -8,17 +8,17 @@
             margin-bottom: 2px;
             font-family: sans-serif;
         }
-        .animation-container {
-            display: none;
-            width: 100px;
-            height: 100px;
-            margin: 10px auto;
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        a.dark-mode {
+            color: #bb86fc;
+        }
+        img.dark-mode {
+            filter: invert(1);
         }
         .bounce {
-            width: 100px;
-            height: 100px;
-            background-color: #FF5733;
-            border-radius: 50%;
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
@@ -26,17 +26,13 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-150px);
+                transform: translateY(-30px);
             }
             60% {
-                transform: translateY(-75px);
+                transform: translateY(-15px);
             }
         }
         .rotate {
-            width: 100px;
-            height: 100px;
-            background-color: #33FF57;
-            margin: 10px auto;
             animation: rotate 3s infinite linear;
         }
         @keyframes rotate {
@@ -48,10 +44,6 @@
             }
         }
         .scale {
-            width: 100px;
-            height: 100px;
-            background-color: #3357FF;
-            margin: 10px auto;
             animation: scale 2s infinite ease-in-out;
         }
         @keyframes scale {
@@ -67,22 +59,26 @@
 </head>
 <body>
     <center>
-        <h1>You should keep your phone happy</h1>
+        <h1 class="title">You should keep your phone happy</h1>
         <a href="https://discord.com/app">Click here to make browser or phone happy</a>
         <br>
-        <img width="128px" height="128px" src="/happyphone.png">
+        <img class="image" width="128px" height="128px" src="/happyphone.png">
         <tetapux-ads></tetapux-ads>
-        <div id="animations" class="animation-container">
-            <div class="bounce"></div>
-            <div class="rotate"></div>
-            <div class="scale"></div>
-        </div>
     </center>
     <script>
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('happy') === '5T2019B2025') {
-                document.getElementById('animations').style.display = 'block';
+                document.body.classList.add('dark-mode');
+                document.querySelectorAll('a').forEach(function(element) {
+                    element.classList.add('dark-mode');
+                });
+                document.querySelectorAll('img').forEach(function(element) {
+                    element.classList.add('dark-mode');
+                });
+                document.querySelector('.title').classList.add('bounce');
+                document.querySelector('a').classList.add('rotate');
+                document.querySelector('.image').classList.add('scale');
             }
         };
     </script>
