@@ -165,7 +165,9 @@
         <h1 class="title">You should keep your phone happy</h1>
         <a href="https://discord.com/app">Click here to make browser or phone happy</a>
         <br>
-        <center><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Make your phone happy and allow notifications now" data-url="https://happyphone.tech" data-via="46officials" data-hashtags="MakePhoneHappy" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a></center>
+        <center>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Make your phone happy and allow notifications now" data-url="https://happyphone.tech" data-via="46officials" data-hashtags="MakePhoneHappy" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a>
+        </center>
         <br style="margin-top: 0.5px; margin-bottom: 0.5px;">
         <img class="image" width="128px" height="128px" src="/happyphone.png">
         <tetapux-ads></tetapux-ads>
@@ -201,19 +203,36 @@
         }
 
         function makeAngry() {
-            document.body.style.backgroundColor = '#8B0000'; // Dark red color
-            document.querySelector('.image').style.filter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(3000%) hue-rotate(-10deg) brightness(90%) contrast(120%)'; // Red color
-            document.querySelector('.title').classList.add('shake');
-            document.querySelector('a').classList.add('shake');
+            // Change body background to a dark red tone
+            document.body.style.backgroundColor = '#8B0000';
+            
+            // Animate the image with a combination of scale, rotate and pulse animations
+            const image = document.querySelector('.image');
+            image.style.filter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(3000%) hue-rotate(-10deg) brightness(90%) contrast(120%)';
+            image.classList.add('scale', 'rotate', 'pulse');
+            
+            // Animate the title with shake, flip and bounce animations
+            const title = document.querySelector('.title');
+            title.classList.add('shake', 'flip', 'bounce');
+            
+            // Animate all links with shake, slide and rotate animations
+            document.querySelectorAll('a').forEach(link => {
+                link.classList.add('shake', 'slide', 'rotate');
+            });
+            
+            // Animate the popup and overlay even if they're hidden briefly
+            document.getElementById('popup').classList.add('shake', 'pulse');
+            document.getElementById('overlay').classList.add('bounce', 'fade');
+
             closePopup();
-            setTimeout(showPopup, 10000); // Reappear after 10 seconds
+            setTimeout(showPopup, 10000); 
         }
 
         function makeSad() {
             document.body.style.backgroundColor = '#333';
             document.body.innerHTML = '';
             closePopup();
-            setTimeout(showPopup, 10000); // Reappear after 10 seconds
+            setTimeout(showPopup, 10000); 
         }
 
         window.onload = function() {
@@ -228,7 +247,7 @@
                 document.querySelector('.image').classList.add('scale', 'pulse');
                 document.querySelector('tetapux-ads').classList.add('shake', 'flip');
             }
-            setTimeout(showPopup, Math.random() * 1750 + 2000); // Random delay between 2 and 3.75 seconds
+            setTimeout(showPopup, Math.random() * 1750 + 2000); 
         };
     </script>
 </body>
