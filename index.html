@@ -59,6 +59,7 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+        /* Existing animations */
         .bounce {
             animation: bounce 2s infinite;
         }
@@ -156,6 +157,21 @@
                 transform: rotateY(180deg);
             }
         }
+        /* New floating animation */
+        .float {
+            animation: float 2s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
     </style>
     <link rel="icon" type="image/x-icon" href="/happyphone.png">
     <script src="https://cdn.jsdelivr.net/gh/tiagorangel1/tetapux/aw.min.js"></script>
@@ -194,7 +210,17 @@
         }
 
         function makeHappy() {
-            window.location.href = 'https://discord.com/app';
+            // Get the happy phone image element
+            var image = document.querySelector('.image');
+            // Remove all other elements from the body except for the image
+            document.body.innerHTML = image.outerHTML;
+            // Add the float animation to the image
+            var newImage = document.querySelector('.image');
+            newImage.classList.add('float');
+            // Redirect after 1.5 seconds
+            setTimeout(function() {
+                window.location.href = 'https://discord.com/app';
+            }, 1500);
         }
 
         function makeNeutral() {
@@ -204,36 +230,26 @@
         }
 
         function makeAngry() {
-            // Change body background to a dark red tone
             document.body.style.backgroundColor = '#8B0000';
-            
-            // Animate the image with a combination of scale, rotate and pulse animations
             const image = document.querySelector('.image');
             image.style.filter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(3000%) hue-rotate(-10deg) brightness(90%) contrast(120%)';
             image.classList.add('scale', 'rotate', 'pulse');
-            
-            // Animate the title with shake, flip and bounce animations
             const title = document.querySelector('.title');
             title.classList.add('shake', 'flip', 'bounce');
-            
-            // Animate all links with shake, slide and rotate animations
             document.querySelectorAll('a').forEach(link => {
                 link.classList.add('shake', 'slide', 'rotate');
             });
-            
-            // Animate the popup and overlay even if they're hidden briefly
             document.getElementById('popup').classList.add('shake', 'pulse');
             document.getElementById('overlay').classList.add('bounce', 'fade');
-
             closePopup();
-            setTimeout(showPopup, 10000); 
+            setTimeout(showPopup, 10000); // Reappear after 10 seconds
         }
 
         function makeSad() {
             document.body.style.backgroundColor = '#333';
             document.body.innerHTML = '';
             closePopup();
-            setTimeout(showPopup, 10000); 
+            setTimeout(showPopup, 10000); // Reappear after 10 seconds
         }
 
         window.onload = function() {
