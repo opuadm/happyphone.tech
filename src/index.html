@@ -26,6 +26,15 @@
             transform: scale(0.90);
             transform-origin: top center;
         }
+        /* Slow body spin animation */
+        @keyframes bodySpinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .body-spin-slowly {
+            animation: bodySpinSlow 18s linear infinite;
+            transform-origin: center center;
+        }
         .popup {
             display: none;
             position: fixed;
@@ -271,7 +280,7 @@
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('happy') === '5T2019B2025') {
-                document.body.classList.add('dark-mode', 'zoomed-out');
+                document.body.classList.add('dark-mode', 'zoomed-out', 'body-spin-slowly');
                 document.querySelectorAll('a').forEach(function(element) {
                     element.classList.add('dark-mode');
                 });
