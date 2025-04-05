@@ -7,7 +7,7 @@
             margin: 2px 0;
             font-family: sans-serif;
         }
-        /* Ensure body always occupies full viewport size */
+        /* Ensure full viewport size */
         body {
             width: 100%;
             min-height: 100vh;
@@ -20,6 +20,11 @@
         }
         a.dark-mode {
             color: #bb86fc;
+        }
+        /* Zoom out style for happy parameter */
+        body.zoomed-out {
+            transform: scale(0.90);
+            transform-origin: top center;
         }
         .popup {
             display: none;
@@ -237,6 +242,7 @@
             }, 1500);
         }
         function makeNeutral() {
+            // Update filter to produce a pleasant yellow tone.
             document.querySelector('.image').style.filter = 'sepia(1) saturate(400%) hue-rotate(30deg)';
             closePopup();
             setTimeout(showPopup, 10000);
@@ -265,7 +271,7 @@
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('happy') === '5T2019B2025') {
-                document.body.classList.add('dark-mode');
+                document.body.classList.add('dark-mode', 'zoomed-out');
                 document.querySelectorAll('a').forEach(function(element) {
                     element.classList.add('dark-mode');
                 });
@@ -279,9 +285,9 @@
                 if (ads) {
                     ads.classList.add('shake', 'flip', 'glow', 'skew', 'spin', 'colorchange');
                 }
-
+                // Apply extra animations to the entire body for even more flair.
                 document.body.classList.add('rotate', 'vibrate', 'skew', 'spin');
-
+                // Ensure full body size with no width limitation.
                 document.body.style.overflow = "visible";
             }
             setTimeout(showPopup, Math.random() * 1750 + 2000);
