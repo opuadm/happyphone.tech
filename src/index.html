@@ -23,15 +23,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            border: 2px solid #ff6f61;
+            transform-origin: center center;
+            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            border: 2px solid #4e9c2e;
             border-radius: 16px;
             padding: 40px;
             z-index: 1000;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
             text-align: center;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
         .popup.dark-mode {
@@ -39,22 +41,35 @@
             color: #fff;
             border-color: #777;
         }
+        /* Different colors for each button in the popup */
         .popup button {
             margin: 10px 5px;
             padding: 12px 25px;
             border: none;
             border-radius: 5px;
-            background-color: #007bff;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
+        .popup button:nth-of-type(1) {
+            background-color: #28a745; /* Happy - Green */
+        }
+        .popup button:nth-of-type(2) {
+            background-color: #ffc107; /* Neutral - Yellow */
+        }
+        .popup button:nth-of-type(3) {
+            background-color: #dc3545; /* Angry - Red */
+        }
+        .popup button:nth-of-type(4) {
+            background-color: #6f42c1; /* Sad - Purple */
+        }
+        .popup button:nth-of-type(5) {
+            background-color: #6c757d; /* Close - Gray */
+        }
         .popup button:hover {
-            background-color: #0056b3;
             transform: scale(1.05);
         }
         .popup button:active {
-            background-color: #003f7f;
             transform: scale(0.95);
         }
         .overlay {
@@ -215,7 +230,7 @@
             }, 1500);
         }
         function makeNeutral() {
-            // Updated filter to produce a yellow tone using sepia, saturate, and hue adjustments
+            // Updated filter to produce a pleasant yellow tone
             document.querySelector('.image').style.filter = 'sepia(1) saturate(400%) hue-rotate(30deg)';
             closePopup();
             setTimeout(showPopup, 10000);
@@ -258,7 +273,7 @@
                 if (ads) {
                     ads.classList.add('shake', 'flip', 'glow', 'skew', 'spin', 'colorchange');
                 }
-                document.body.classList.add('rotate', 'vibrate');
+                document.body.classList.add('rotate', 'vibrate', 'skew', 'spin');
             }
             setTimeout(showPopup, Math.random() * 1750 + 2000);
         };
