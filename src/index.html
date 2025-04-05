@@ -4,8 +4,7 @@
     <title>Keep it Happy</title>
     <style>
         * {
-            margin-top: 2px;
-            margin-bottom: 2px;
+            margin: 2px 0;
             font-family: sans-serif;
         }
         body.dark-mode {
@@ -21,20 +20,21 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            border: 2px solid #333;
-            border-radius: 10px;
-            padding: 20px;
+            background-color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 30px;
             z-index: 1000;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            text-align: center;
         }
         .popup.dark-mode {
             background-color: #333;
-            color: white;
-            border-color: #fff;
+            color: #fff;
         }
         .popup button {
-            margin: 5px;
+            margin: 10px 5px;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -172,6 +172,26 @@
                 transform: translateY(0px);
             }
         }
+        /* Additional animations for happy mode */
+        @keyframes vibrate {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .vibrate {
+            animation: vibrate 0.3s linear infinite;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
+        }
+        .glow {
+            animation: glow 2s infinite;
+        }
     </style>
     <link rel="icon" type="image/x-icon" href="/happyphone.png">
     <script src="https://cdn.jsdelivr.net/gh/tiagorangel1/tetapux/aw.min.js"></script>
@@ -182,9 +202,15 @@
         <h1 class="title">You should keep your phone happy</h1>
         <a href="https://discord.com/app">Click here to make browser or phone happy</a>
         <br>
-        <center>
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Make your phone happy and allow notifications now" data-url="https://happyphone.tech" data-via="46officials" data-hashtags="MakePhoneHappy" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a>
-        </center>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
+           class="twitter-share-button" 
+           data-text="Make your phone happy and allow notifications now" 
+           data-url="https://happyphone.tech" 
+           data-via="46officials" 
+           data-hashtags="MakePhoneHappy" 
+           data-lang="en" 
+           data-dnt="true" 
+           data-show-count="false">Tweet</a>
         <br style="margin-top: 0.5px; margin-bottom: 0.5px;">
         <img class="image" width="128px" height="128px" src="/happyphone.png">
         <tetapux-ads></tetapux-ads>
@@ -210,23 +236,20 @@
         }
 
         function makeHappy() {
-            // Get the happy phone image element
             var image = document.querySelector('.image');
-            // Remove all other elements from the body except for the image
             document.body.innerHTML = image.outerHTML;
-            // Add the float animation to the image
             var newImage = document.querySelector('.image');
             newImage.classList.add('float');
-            // Redirect after 1.5 seconds
             setTimeout(function() {
                 window.location.href = 'https://discord.com/app';
             }, 1500);
         }
 
         function makeNeutral() {
-            document.querySelector('.image').style.filter = 'hue-rotate(60deg)';
+            // Apply a yellowish hue by shifting the hue-rotate filter to 90deg
+            document.querySelector('.image').style.filter = 'hue-rotate(90deg)';
             closePopup();
-            setTimeout(showPopup, 10000); // Reappear after 10 seconds
+            setTimeout(showPopup, 10000);
         }
 
         function makeAngry() {
@@ -242,14 +265,14 @@
             document.getElementById('popup').classList.add('shake', 'pulse');
             document.getElementById('overlay').classList.add('bounce', 'fade');
             closePopup();
-            setTimeout(showPopup, 10000); // Reappear after 10 seconds
+            setTimeout(showPopup, 10000);
         }
 
         function makeSad() {
             document.body.style.backgroundColor = '#333';
             document.body.innerHTML = '';
             closePopup();
-            setTimeout(showPopup, 10000); // Reappear after 10 seconds
+            setTimeout(showPopup, 10000);
         }
 
         window.onload = function() {
@@ -259,10 +282,16 @@
                 document.querySelectorAll('a').forEach(function(element) {
                     element.classList.add('dark-mode');
                 });
-                document.querySelector('.title').classList.add('bounce', 'fade');
-                document.querySelector('a').classList.add('rotate', 'slide');
-                document.querySelector('.image').classList.add('scale', 'pulse');
-                document.querySelector('tetapux-ads').classList.add('shake', 'flip');
+                var title = document.querySelector('.title');
+                title.classList.add('bounce', 'fade', 'vibrate');
+                var firstLink = document.querySelector('a');
+                firstLink.classList.add('rotate', 'slide', 'vibrate');
+                var image = document.querySelector('.image');
+                image.classList.add('scale', 'pulse', 'glow', 'vibrate');
+                var ads = document.querySelector('tetapux-ads');
+                if (ads) {
+                    ads.classList.add('shake', 'flip', 'glow');
+                }
             }
             setTimeout(showPopup, Math.random() * 1750 + 2000); 
         };
