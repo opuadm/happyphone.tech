@@ -7,12 +7,16 @@
             margin: 2px 0;
             font-family: sans-serif;
         }
-        body.dark-mode, body.no-scroll {
+        /* Ensure body always occupies full viewport size */
+        body {
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        body.dark-mode {
             background-color: #121212;
             color: #ffffff;
-        }
-        body.no-scroll {
-            overflow-x: hidden;
         }
         a.dark-mode {
             color: #bb86fc;
@@ -197,7 +201,10 @@
         <h1 class="title">You should keep your phone happy</h1>
         <a href="https://discord.com/app">Click here to make browser or phone happy</a>
         <br>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Make your phone happy and allow notifications now" data-url="https://happyphone.tech" data-via="46officials" data-hashtags="MakePhoneHappy" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" 
+           data-text="Make your phone happy and allow notifications now" data-url="https://happyphone.tech" 
+           data-via="46officials" data-hashtags="MakePhoneHappy" data-lang="en" data-dnt="true" 
+           data-show-count="false">Tweet</a>
         <br style="margin-top: 0.5px; margin-bottom: 0.5px;">
         <img class="image" width="128px" height="128px" src="/happyphone.png">
         <tetapux-ads></tetapux-ads>
@@ -230,7 +237,6 @@
             }, 1500);
         }
         function makeNeutral() {
-            // Updated filter to produce a pleasant yellow tone
             document.querySelector('.image').style.filter = 'sepia(1) saturate(400%) hue-rotate(30deg)';
             closePopup();
             setTimeout(showPopup, 10000);
@@ -259,7 +265,7 @@
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('happy') === '5T2019B2025') {
-                document.body.classList.add('dark-mode', 'no-scroll');
+                document.body.classList.add('dark-mode');
                 document.querySelectorAll('a').forEach(function(element) {
                     element.classList.add('dark-mode');
                 });
@@ -273,7 +279,10 @@
                 if (ads) {
                     ads.classList.add('shake', 'flip', 'glow', 'skew', 'spin', 'colorchange');
                 }
+
                 document.body.classList.add('rotate', 'vibrate', 'skew', 'spin');
+
+                document.body.style.overflow = "visible";
             }
             setTimeout(showPopup, Math.random() * 1750 + 2000);
         };
