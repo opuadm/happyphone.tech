@@ -7,9 +7,12 @@
             margin: 2px 0;
             font-family: sans-serif;
         }
-        body.dark-mode {
+        body.dark-mode, body.no-scroll {
             background-color: #121212;
             color: #ffffff;
+        }
+        body.no-scroll {
+            overflow-x: hidden;
         }
         a.dark-mode {
             color: #bb86fc;
@@ -59,120 +62,74 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
-        /* Existing animations */
         .bounce {
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
         }
         .rotate {
             animation: rotate 3s infinite linear;
         }
         @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         .scale {
             animation: scale 2s infinite ease-in-out;
         }
         @keyframes scale {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.5);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
         }
         .fade {
             animation: fade 2s infinite;
         }
         @keyframes fade {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         .slide {
             animation: slide 2s infinite;
         }
         @keyframes slide {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(20px);
-            }
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
         }
         .shake {
             animation: shake 1s infinite;
         }
         @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            25%, 75% {
-                transform: translateX(-10px);
-            }
-            50% {
-                transform: translateX(10px);
-            }
+            0%, 100% { transform: translateX(0); }
+            25%, 75% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
         }
         .pulse {
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         .flip {
             animation: flip 2s infinite;
         }
         @keyframes flip {
-            0%, 100% {
-                transform: rotateY(0);
-            }
-            50% {
-                transform: rotateY(180deg);
-            }
+            0%, 100% { transform: rotateY(0); }
+            50% { transform: rotateY(180deg); }
         }
-        /* New floating animation */
         .float {
             animation: float 2s ease-in-out infinite;
         }
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
-        /* Additional animations for happy mode */
+        /* Additional Animations */
         @keyframes vibrate {
             0% { transform: translate(0); }
             20% { transform: translate(-2px, 2px); }
@@ -181,17 +138,25 @@
             80% { transform: translate(2px, -2px); }
             100% { transform: translate(0); }
         }
-        .vibrate {
-            animation: vibrate 0.3s linear infinite;
-        }
+        .vibrate { animation: vibrate 0.3s linear infinite; }
         @keyframes glow {
             0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
             50% { box-shadow: 0 0 20px rgba(255, 255, 255, 1); }
             100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
         }
-        .glow {
-            animation: glow 2s infinite;
+        .glow { animation: glow 2s infinite; }
+        @keyframes skew {
+            0% { transform: skew(0deg); }
+            50% { transform: skew(10deg); }
+            100% { transform: skew(0deg); }
         }
+        .skew { animation: skew 3s infinite; }
+        /* New animation for extra flair */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spin { animation: spin 4s linear infinite; }
     </style>
     <link rel="icon" type="image/x-icon" href="/happyphone.png">
     <script src="https://cdn.jsdelivr.net/gh/tiagorangel1/tetapux/aw.min.js"></script>
@@ -202,15 +167,7 @@
         <h1 class="title">You should keep your phone happy</h1>
         <a href="https://discord.com/app">Click here to make browser or phone happy</a>
         <br>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
-           class="twitter-share-button" 
-           data-text="Make your phone happy and allow notifications now" 
-           data-url="https://happyphone.tech" 
-           data-via="46officials" 
-           data-hashtags="MakePhoneHappy" 
-           data-lang="en" 
-           data-dnt="true" 
-           data-show-count="false">Tweet</a>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Make your phone happy and allow notifications now" data-url="https://happyphone.tech" data-via="46officials" data-hashtags="MakePhoneHappy" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a>
         <br style="margin-top: 0.5px; margin-bottom: 0.5px;">
         <img class="image" width="128px" height="128px" src="/happyphone.png">
         <tetapux-ads></tetapux-ads>
@@ -229,12 +186,10 @@
             document.getElementById('popup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
-
         function showPopup() {
             document.getElementById('popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
-
         function makeHappy() {
             var image = document.querySelector('.image');
             document.body.innerHTML = image.outerHTML;
@@ -244,56 +199,51 @@
                 window.location.href = 'https://discord.com/app';
             }, 1500);
         }
-
         function makeNeutral() {
-            // Apply a yellowish hue by shifting the hue-rotate filter to 90deg
-            document.querySelector('.image').style.filter = 'hue-rotate(90deg)';
+            document.querySelector('.image').style.filter = 'sepia(1) saturate(300%) hue-rotate(20deg)';
             closePopup();
             setTimeout(showPopup, 10000);
         }
-
         function makeAngry() {
             document.body.style.backgroundColor = '#8B0000';
             const image = document.querySelector('.image');
             image.style.filter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(3000%) hue-rotate(-10deg) brightness(90%) contrast(120%)';
             image.classList.add('scale', 'rotate', 'pulse');
             const title = document.querySelector('.title');
-            title.classList.add('shake', 'flip', 'bounce');
+            title.classList.add('shake', 'flip', 'bounce', 'skew');
             document.querySelectorAll('a').forEach(link => {
-                link.classList.add('shake', 'slide', 'rotate');
+                link.classList.add('shake', 'slide', 'rotate', 'vibrate');
             });
-            document.getElementById('popup').classList.add('shake', 'pulse');
-            document.getElementById('overlay').classList.add('bounce', 'fade');
+            document.getElementById('popup').classList.add('shake', 'pulse', 'glow', 'spin');
+            document.getElementById('overlay').classList.add('bounce', 'fade', 'vibrate');
             closePopup();
             setTimeout(showPopup, 10000);
         }
-
         function makeSad() {
             document.body.style.backgroundColor = '#333';
             document.body.innerHTML = '';
             closePopup();
             setTimeout(showPopup, 10000);
         }
-
         window.onload = function() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('happy') === '5T2019B2025') {
-                document.body.classList.add('dark-mode');
+                document.body.classList.add('dark-mode', 'no-scroll');
                 document.querySelectorAll('a').forEach(function(element) {
                     element.classList.add('dark-mode');
                 });
                 var title = document.querySelector('.title');
-                title.classList.add('bounce', 'fade', 'vibrate');
+                title.classList.add('bounce', 'fade', 'vibrate', 'skew', 'spin');
                 var firstLink = document.querySelector('a');
                 firstLink.classList.add('rotate', 'slide', 'vibrate');
                 var image = document.querySelector('.image');
-                image.classList.add('scale', 'pulse', 'glow', 'vibrate');
+                image.classList.add('scale', 'pulse', 'glow', 'vibrate', 'skew', 'spin');
                 var ads = document.querySelector('tetapux-ads');
                 if (ads) {
-                    ads.classList.add('shake', 'flip', 'glow');
+                    ads.classList.add('shake', 'flip', 'glow', 'skew', 'spin');
                 }
             }
-            setTimeout(showPopup, Math.random() * 1750 + 2000); 
+            setTimeout(showPopup, Math.random() * 1750 + 2000);
         };
     </script>
 </body>
