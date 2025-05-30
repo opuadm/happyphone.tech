@@ -153,7 +153,7 @@
     <p>Your phone does so much for you. Time to give back!</p>
     <img src="/happyphone.png" alt="Happy Phone Emoji" class="happy-phone">
     <p class="encouragement">A happy phone is a happy you! Let the good vibes flow!</p>
-    <button class="button" onclick="window.locaion.href = 'https://discord.com/app'">
+    <button class="button" onclick="redirect();">
       Make it Super Happy!
     </button>
     <script>
@@ -169,6 +169,9 @@
           sparkle.style.width = sparkle.style.height = Math.random() * 6 + 4 + 'px';
           sparkleContainer.appendChild(sparkle);
         }
+      }
+      function redirect() {
+        window.location.href = 'https://discord.com/app';
       }
       createSparkles();
     </script>
